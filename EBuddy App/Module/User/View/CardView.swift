@@ -10,14 +10,14 @@
 import SwiftUI
 
 struct CardView: View {
-    @StateObject private var cardVM = CardUserViewModel()
+    @EnvironmentObject private var cardVM: CardUserViewModel
 
     var body: some View {
         VStack(alignment: .leading){
             ScrollView(.vertical) {
                 ForEach(cardVM.userData){ item in
                     VStack(alignment: .leading, spacing: 16){
-                        NavigationLink(destination: CardDetailView(cardVM: self.cardVM, item: item)) {
+                        NavigationLink(destination: CardDetailView(item: item)) {
                             CardItemView(item: item)
                         }
                     }
@@ -25,8 +25,5 @@ struct CardView: View {
             }
         }
         .padding(.top, 16)
-        .onAppear {
-            self.cardVM.fetchUsers()
-        }
     }
 }

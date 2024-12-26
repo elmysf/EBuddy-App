@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CardDetailView: View {
-    @ObservedObject var cardVM: CardUserViewModel
+    @EnvironmentObject private var cardVM: CardUserViewModel
     @State private var showImagePicker: Bool = false
     @State private var profileImage: UIImage?
     let item: UserJsonModel

@@ -1,0 +1,32 @@
+//
+//  EBuddy-Dev.xcconfig
+//  EBuddy App
+//
+//  Created by Elmo on 26/12/24.
+//  Copyright © 2024 Elmysf. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// API URL
+API_BASE_URL = https:/$()/ebuddy.com/api/dev
+
+// API Key
+API_KEY = my_super_secret_staging_api_key
+
+// Backward Compatible Values
+IS_PRODUCTION = NO
+ENV_NAME = Dev
+
+// Overriding (do NOT change key name)
+// app name
+PRODUCT_NAME = Ebuddy App $(ENV_NAME)
+// bundle id
+PRODUCT_BUNDLE_IDENTIFIER = ai.qalbu.EBuddy-App-Dev.$(ENV_NAME)
+// app icon
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_Dev
+// app version
+MARKETING_VERSION = 1.0.0
+// build number
+CURRENT_PROJECT_VERSION = 1

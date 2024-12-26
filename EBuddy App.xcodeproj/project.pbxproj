@@ -36,22 +36,9 @@
 		36FD6C7E2D1D9C13000D34A7 /* EBuddy AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EBuddy AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		36FD6CEB2D1DAB65000D34A7 /* Exceptions for "EBuddy App" folder in "EBuddy App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"EBuddy-App-Info.plist",
-			);
-			target = 36FD6C632D1D9C12000D34A7 /* EBuddy App */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		36FD6C662D1D9C12000D34A7 /* EBuddy App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				36FD6CEB2D1DAB65000D34A7 /* Exceptions for "EBuddy App" folder in "EBuddy App" target */,
-			);
 			path = "EBuddy App";
 			sourceTree = "<group>";
 		};

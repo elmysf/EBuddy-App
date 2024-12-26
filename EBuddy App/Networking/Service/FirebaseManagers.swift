@@ -14,6 +14,7 @@ import FirebaseStorage
 final class FirebaseManagers {
     private static let db = Firestore.firestore().collection("USERS")
     private let storage = Storage.storage()
+    private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     private var cancellables = Set<AnyCancellable>()
 
     func fetchUsers(with query: Query = FirebaseManagers.db) -> AnyPublisher<[UserJsonModel], Error> {
@@ -43,7 +44,7 @@ final class FirebaseManagers {
     func uploadImageUser(uid: String, image: UIImage) -> AnyPublisher<URL, Error> {
         var imageData: Data?
         var fileExtension: String
-
+        beginBackgroundTask()
         if let pngData = image.pngData() {
             imageData = pngData
             fileExtension = "png"
@@ -51,6 +52,7 @@ final class FirebaseManagers {
             imageData = jpegData
             fileExtension = "jpg"
         } else {
+            endBackgroundTask()
             return Fail(error: NSError(
                 domain: "ImageError",
                 code: -1,
@@ -69,14 +71,16 @@ final class FirebaseManagers {
         let refStorage = storage
             .reference(withPath: "EBuddy-User/\(uid).\(fileExtension)")
 
-        return Future<URL, Error> { promise in
+        return Future<URL, Error> { [weak self] promise in
             refStorage.putData(validImageData, metadata: nil) { metadata, error in
                 if let error = error {
+                    self?.endBackgroundTask()
                     promise(.failure(error))
                     return
                 }
 
                 refStorage.downloadURL { url, error in
+                    self?.endBackgroundTask()
                     if let error = error {
                         promise(.failure(error))
                     } else if let url = url {
@@ -98,5 +102,19 @@ final class FirebaseManagers {
             }
         }
         .eraseToAnyPublisher()
+    }
+    
+    private func beginBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "FirebaseUpload") {
+            UIApplication.shared.endBackgroundTask(self.backgroundTask)
+            self.backgroundTask = .invalid
+        }
+    }
+
+    private func endBackgroundTask() {
+        if backgroundTask != .invalid {
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+            backgroundTask = .invalid
+        }
     }
 }

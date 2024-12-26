@@ -422,7 +422,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EBuddy-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "EBuddy-Dev";
+				INFOPLIST_KEY_CFBundleDisplayName = "EBuddy-Stag";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Elmysf. All rights reserved.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -457,7 +457,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EBuddy-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "EBuddy-Dev";
+				INFOPLIST_KEY_CFBundleDisplayName = "EBuddy-Stag";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Elmysf. All rights reserved.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

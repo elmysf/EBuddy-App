@@ -10,10 +10,11 @@ import SwiftUI
 @main
 struct EBuddy_AppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+    @AppStorage("isDarkMode") private var isDarkMode = false
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }

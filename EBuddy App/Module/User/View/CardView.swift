@@ -11,17 +11,20 @@ import SwiftUI
 
 struct CardView: View {
     @EnvironmentObject private var cardVM: CardUserViewModel
+    let columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: 2)
 
     var body: some View {
         VStack(alignment: .leading){
             ScrollView(.vertical) {
-                ForEach(cardVM.userData){ item in
-                    VStack(alignment: .leading, spacing: 16){
+                LazyVGrid(columns: columns, spacing: 8){
+                    ForEach(cardVM.userData){ item in
                         NavigationLink(destination: CardDetailView(item: item)) {
                             CardItemView(item: item)
                         }
                     }
                 }
+                .padding(.horizontal, 8)
+                .padding(.top, 16)
             }
         }
         .padding(.top, 16)

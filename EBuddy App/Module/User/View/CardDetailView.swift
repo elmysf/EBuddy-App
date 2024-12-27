@@ -13,41 +13,59 @@ struct CardDetailView: View {
     @State private var showImagePicker: Bool = false
     @State private var profileImage: UIImage?
     let item: UserJsonModel
-
+    
     var body: some View {
-        VStack(alignment: .center, spacing: 16){
-
-            if let profileImage = item.profile {
-                AsyncImage(url: URL(string: profileImage)) { image in
-                    image
+        VStack() {
+            Spacer()
+            VStack() {
+                if let profileImage = item.profile {
+                    AsyncImage(url: URL(string: profileImage)) { image in
+                        image
+                            .resizable()
+                            .frame(width:100, height: 100, alignment: .center)
+                            .clipShape(Circle())
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .clipShape(Circle())
+                } else {
+                    Image.imgUser
                         .resizable()
-                        .frame(width: 100, height: 100)
-                        .aspectRatio(contentMode: .fit)
-                } placeholder: {
-                    ProgressView()
+                        .frame(width:100, height: 100, alignment: .center)
+                        .clipShape(Circle())
                 }
-                .clipShape(Circle())
-            } else {
-                Circle()
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.gray)
-            }
-
-            VStack(alignment: .leading, spacing: 8){
-                Text(item.uid)
-                    .foregroundColor(.black)
-                Text(item.genderInformation)
-                    .foregroundColor(.black)
-                Text(item.phoneNumber)
-                    .foregroundColor(.black)
+                Text(item.name ?? "")
+                    .font(.title)
+                    .foregroundStyle(Color.mainShadowColor)
                 Text(item.email)
-                    .foregroundColor(.black)
+                    .font(.subheadline)
+                    .foregroundColor(.tertiary)
+                
+                Button(action: {
+                    self.showImagePicker = true
+                }) {
+                    Text("Upload Photo")
+                        .frame(width: 50, height: 30)
+                        .font(.system(size: 16))
+                        .foregroundColor(.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(Color.white, lineWidth: 2)
+                        )
+                }
+                .background(Color.blue)
+                .cornerRadius(25)
+                
+                VStack(alignment: .leading, spacing: 8){
+                    Text(item.uid)
+                        .foregroundColor(.mainShadowColor)
+                    Text(item.genderInformation)
+                        .foregroundColor(.mainShadowColor)
+                    Text(item.phoneNumber)
+                        .foregroundColor(.mainShadowColor)
+                }
+                Spacer()
             }
-            Button(action: {
-                self.showImagePicker = true
-            }, label: {
-                Text("Upload Profile Image")
-            })
         }
         .padding(.horizontal, 16)
         .sheet(isPresented: $showImagePicker) {

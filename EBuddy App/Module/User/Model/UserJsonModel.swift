@@ -11,6 +11,15 @@ import Foundation
 struct UserJsonModel: Codable, Identifiable {
     let id = UUID()
     let uid: String
+    let name: String?
+    let price: Double?
+    let rating: Double?
+    let totalRating: Int?
+    let isOnline: Bool
+    let isVerified: Bool
+    let isAVailable: Bool
+    let isVoiceAvailable: Bool
+    let isHaveInstagram: Bool
     let email: String
     let phoneNumber: String
     let gender: Int
@@ -28,6 +37,15 @@ struct UserJsonModel: Codable, Identifiable {
         case phoneNumber = "phone_number"
         case gender = "ge"
         case profile = "profile_user"
+        case name
+        case price
+        case rating
+        case totalRating = "total_rating"
+        case isOnline = "is_online"
+        case isVerified = "is_verified"
+        case isAVailable = "is_available"
+        case isVoiceAvailable = "is_voice_available"
+        case isHaveInstagram = "is_have_instagram"
     }
 
     var genderInformation: String {
@@ -39,6 +57,14 @@ struct UserJsonModel: Codable, Identifiable {
         case nil:
             return ""
         }
+    }
+    
+    var priceNominal: String {
+        return "\(price ?? 0)".components(separatedBy: ".").first ?? ""
+    }
+
+    var priceDecimal: String {
+        return "\(price ?? 0)".components(separatedBy: ".").last ?? ""
     }
 }
 

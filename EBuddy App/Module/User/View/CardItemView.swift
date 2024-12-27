@@ -122,27 +122,12 @@ extension CardItemView {
     
     @ViewBuilder private var gameSectionView: some View {
         HStack(spacing: -10) {
-            ForEach(0..<(item.gemes?.count ?? 0), id: \.self) { index in
+            ForEach(0..<min(item.gemes?.count ?? 0, 2), id: \.self) { index in
                 AsyncImage(url: URL(string: item.gemes?[index] ?? "")) { image in
                     image
                         .resizable()
                         .frame(width: 36, height: 36)
                         .clipShape(Circle())
-                        .overlay(
-                            ZStack {
-                                if (item.gemes?.count ?? 0) > 2 {
-                                    Circle()
-                                        .fill(Color.white.opacity(0.5))
-                                        .overlay(
-                                            Circle()
-                                                .stroke(Color.white, lineWidth: 1)
-                                        )
-                                    Text("+\(item.gemes?.count ?? 0 - 2)")
-                                        .multilineTextAlignment(.center)
-                                        .font(.system(size: 14))
-                                        .foregroundColor(Color.black)
-                                }
-                            })
                 } placeholder: {
                     Image.imgDefault
                         .resizable()
@@ -151,6 +136,24 @@ extension CardItemView {
                         .cornerRadius(16)
                 }
             }
+
+            if (item.gemes?.count ?? 0) > 2 {
+                ZStack {
+                    Circle()
+                        .fill(Color.white.opacity(0.5))
+                        .overlay(
+                            Circle()
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                    Text("+\(item.gemes?.count ?? 0 - 2)")
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 14))
+                        .foregroundColor(Color.black)
+                }
+                .frame(width: 36, height: 36)
+                .offset(x: -27)
+            }
+
             Spacer()
         }
         .padding(.leading, 8)

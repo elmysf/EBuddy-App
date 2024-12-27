@@ -186,12 +186,12 @@ extension CardItemView {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 16, height: 16)
-                Text(String(format: "%.2f", rating))
-                    .font(.system(size: 14, weight: .bold))
+                Text(String(format: "%g", rating))
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.mainFontColor)
                 
                 Text("(\(totalRating))")
-                    .font(.system(size: 14, weight: .regular))
+                    .font(.system(size: 12, weight: .regular))
                     .foregroundColor(.tertiaryColor)
             }
         }
@@ -206,8 +206,12 @@ extension CardItemView {
                     .frame(width: 16, height: 16)
                 
                 HStack(alignment: .bottom, spacing: 0) {
-                    Text("\(self.item.priceNominal)/1Hr")
-                        .font(.system(size: 14, weight: .bold))
+                    Text(self.item.priceNominal)
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.mainFontColor)
+                    
+                    Text(".\(self.item.priceDecimal)/1Hr")
+                        .font(.system(size: 12, weight: .light))
                         .foregroundColor(.mainFontColor)
                 }
             }

@@ -64,6 +64,10 @@ struct UserJsonModel: Codable, Identifiable {
     var priceNominal: String {
         return "\(price ?? 0)".components(separatedBy: ".").first ?? ""
     }
+    
+    var priceDecimal: String {
+        return "\(price ?? 0)".components(separatedBy: ".").last ?? ""
+    }
 }
 
 enum GenderEnum: Int, Codable {

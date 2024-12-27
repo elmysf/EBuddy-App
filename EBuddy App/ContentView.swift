@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("isDarkMode") private var isDarkMode = false
     @StateObject private var cardVM = CardUserViewModel()
     var body: some View {
         NavigationView {
             CardView()
                 .navigationTitle("E-Buddy")
+                .toolbar {
+                    Button(action: {
+                        isDarkMode.toggle()
+                    }) {
+                        Image(systemName: isDarkMode ? "moon.fill" : "moon")
+                            .foregroundColor(Color.mainFontColor)
+                    }
+                }
         }
         .environmentObject(self.cardVM)
         .onAppear  {

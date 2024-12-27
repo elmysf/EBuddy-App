@@ -26,6 +26,7 @@ extension Image {
     static let imgDefault = Image("imgDefault")
     static let imgUser = Image("imgUser")
     static let imgYuno = Image("imgYuno")
+    static let icFiltered = Image("icFiltered")
     
     func centerCropped() -> some View {
          GeometryReader { geo in

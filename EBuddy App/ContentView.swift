@@ -15,11 +15,13 @@ struct ContentView: View {
             CardView()
                 .navigationTitle("E-Buddy")
                 .toolbar {
-                    Button(action: {
-                        isDarkMode.toggle()
-                    }) {
-                        Image(systemName: isDarkMode ? "moon.fill" : "moon")
-                            .foregroundColor(Color.mainFontColor)
+                    HStack(spacing: 8) {
+                        Button(action: {
+                            isDarkMode.toggle()
+                        }) {
+                            Image(systemName: isDarkMode ? "moon.fill" : "moon")
+                                .foregroundColor(Color.mainFontColor)
+                        }
                     }
                 }
         }

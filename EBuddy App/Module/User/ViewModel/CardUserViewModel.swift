@@ -15,6 +15,12 @@ class CardUserViewModel: ObservableObject {
     
     @Published var userData: [UserJsonModel] = []
     @Published var errorMessage: String? = nil
+    @Published var sortedBy: SortedData = .lastActive { didSet { fetchUsers() } }
+    @Published var filterBy: Bool = false { didSet { fetchUsers() } }
+    @Published var columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: 2)
+    @Published var showAlert: Bool = false
+    @Published var alertTitle: String = ""
+    @Published var alertMessage: String = ""
     
     private let firebaseManager: FirebaseManagers
     private var cancellables = Set<AnyCancellable>()
@@ -24,7 +30,7 @@ class CardUserViewModel: ObservableObject {
     }
     
     func fetchUsers() {
-        firebaseManager.fetchUsers()
+        firebaseManager.fetchUsers(sortedBy: self.sortedBy, filterByFemale: self.filterBy)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
@@ -47,7 +53,7 @@ class CardUserViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
-                    self?.errorMessage = error.localizedDescription
+                    self?.showUploadErrorAlert(message: error.localizedDescription)
                 }
             }, receiveValue: { [weak self] url in
                 self?.updateImageURL(userID: uid, imageURL: url.absoluteString)
@@ -63,11 +69,28 @@ class CardUserViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
-                    self?.errorMessage = error.localizedDescription
+                    self?.showUploadErrorAlert(message: error.localizedDescription)
                 }
             }, receiveValue: { [weak self] respone in
                 self?.fetchUsers()
             })
             .store(in: &cancellables)
+    }
+    
+    private func showUploadErrorAlert(message: String) {
+        self.alertTitle = "Upload Failed"
+        self.alertMessage = message
+        self.showAlert = true
+    }
+    
+    var currentSortLabel: String {
+        switch sortedBy {
+        case .lastActive:
+            return "Last Active"
+        case .rating:
+            return "Rating"
+        case .price:
+            return "Price"
+        }
     }
 }

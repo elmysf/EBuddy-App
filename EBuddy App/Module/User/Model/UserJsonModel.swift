@@ -15,15 +15,16 @@ struct UserJsonModel: Codable, Identifiable {
     let price: Double?
     let rating: Double?
     let totalRating: Int?
-    let isOnline: Bool
-    let isVerified: Bool
-    let isAVailable: Bool
-    let isVoiceAvailable: Bool
-    let isHaveInstagram: Bool
+    let isOnline: Bool?
+    let isVerified: Bool?
+    let isAVailable: Bool?
+    let isVoiceAvailable: Bool?
+    let isHaveInstagram: String?
     let email: String
     let phoneNumber: String
     let gender: Int
     let profile: String?
+    var gemes: [String]?
     var genderEnum: GenderEnum? {
         guard let infoGender = GenderEnum(rawValue: gender) else {
             return nil
@@ -46,6 +47,7 @@ struct UserJsonModel: Codable, Identifiable {
         case isAVailable = "is_available"
         case isVoiceAvailable = "is_voice_available"
         case isHaveInstagram = "is_have_instagram"
+        case gemes
     }
 
     var genderInformation: String {
@@ -61,10 +63,6 @@ struct UserJsonModel: Codable, Identifiable {
     
     var priceNominal: String {
         return "\(price ?? 0)".components(separatedBy: ".").first ?? ""
-    }
-
-    var priceDecimal: String {
-        return "\(price ?? 0)".components(separatedBy: ".").last ?? ""
     }
 }
 

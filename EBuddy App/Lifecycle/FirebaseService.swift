@@ -20,12 +20,12 @@ extension FirebaseService: UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         #if DEV
-        guard let filePath = Bundle.main.path(forResource: "GoogleService-Info-Dev", ofType: "plist") else { return false }
+        guard let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") else { return false }
         let options = FirebaseOptions(contentsOfFile: filePath)
         FirebaseConfiguration.shared.setLoggerLevel(.error)
         FirebaseApp.configure(options: options!)
         #else
-        guard let filePath = Bundle.main.path(forResource: "GoogleService-Info-Dev", ofType: "plist")  else { return false }
+        guard let filePath = Bundle.main.path(forResource: "GoogleService-Info-Stag", ofType: "plist")  else { return false }
         let options = FirebaseOptions(contentsOfFile: filePath)
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure(options: options!)

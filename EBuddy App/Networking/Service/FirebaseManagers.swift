@@ -16,26 +16,40 @@ final class FirebaseManagers {
     private let storage = Storage.storage()
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     private var cancellables = Set<AnyCancellable>()
-
-    func fetchUsers(with query: Query = FirebaseManagers.db) -> AnyPublisher<[UserJsonModel], Error> {
-        Future<[UserJsonModel], Error> { promise in
+    
+    func fetchUsers(sortedBy: SortedData, filterByFemale: Bool) -> AnyPublisher<[UserJsonModel], Never> {
+        var query: Query = FirebaseManagers.db
+        
+        if filterByFemale {
+            query = query.whereField("ge", isEqualTo: 0)
+        }
+        
+        switch sortedBy {
+        case .lastActive:
+            query = query.order(by: "last_active", descending: true)
+        case .rating:
+            query = query.order(by: "rating", descending: true)
+        case .price:
+            query = query.order(by: "price", descending: false)
+        }
+        
+        return Future<[UserJsonModel], Never> { promise in
             query.getDocuments { snapshot, error in
                 if let error = error {
-                    promise(.failure(error))
-                    return
-                }
-
-                guard let documents = snapshot?.documents else {
+                    print("Firestore query error: \(error.localizedDescription)")
                     promise(.success([]))
                     return
                 }
-
-                do {
-                    let users = try documents.map { try $0.data(as: UserJsonModel.self) }
-                    promise(.success(users))
-                } catch {
-                    promise(.failure(error))
+                
+                guard let snapshot = snapshot else {
+                    promise(.success([]))
+                    return
                 }
+                
+                let users = snapshot.documents.compactMap { doc -> UserJsonModel? in
+                    try? doc.data(as: UserJsonModel.self)
+                }
+                promise(.success(users))
             }
         }
         .eraseToAnyPublisher()
@@ -59,7 +73,7 @@ final class FirebaseManagers {
                 userInfo: [NSLocalizedDescriptionKey: "Invalid image data."]
             )).eraseToAnyPublisher()
         }
-
+        
         guard let validImageData = imageData else {
             return Fail(error: NSError(
                 domain: "ImageError",
@@ -67,10 +81,9 @@ final class FirebaseManagers {
                 userInfo: [NSLocalizedDescriptionKey: "Unable to generate image data."]
             )).eraseToAnyPublisher()
         }
-
-        let refStorage = storage
-            .reference(withPath: "EBuddy-User/\(uid).\(fileExtension)")
-
+        
+        let refStorage = storage.reference().child("profile_user/\(uid).\(fileExtension)")
+        
         return Future<URL, Error> { [weak self] promise in
             refStorage.putData(validImageData, metadata: nil) { metadata, error in
                 if let error = error {
@@ -78,7 +91,7 @@ final class FirebaseManagers {
                     promise(.failure(error))
                     return
                 }
-
+                
                 refStorage.downloadURL { url, error in
                     self?.endBackgroundTask()
                     if let error = error {
@@ -90,7 +103,7 @@ final class FirebaseManagers {
             }
         }.eraseToAnyPublisher()
     }
-
+    
     func updateUserProfileImageURL(userID: String, url: String) -> AnyPublisher<Void, Error> {
         Future<Void, Error> { promise in
             FirebaseManagers.db.document(userID).updateData(["profile_user": url]) { error in
@@ -103,14 +116,14 @@ final class FirebaseManagers {
         }
         .eraseToAnyPublisher()
     }
-    
+
     private func beginBackgroundTask() {
         backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "FirebaseUpload") {
             UIApplication.shared.endBackgroundTask(self.backgroundTask)
             self.backgroundTask = .invalid
         }
     }
-
+    
     private func endBackgroundTask() {
         if backgroundTask != .invalid {
             UIApplication.shared.endBackgroundTask(backgroundTask)

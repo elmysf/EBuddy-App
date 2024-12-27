@@ -22,10 +22,15 @@ struct CardDetailView: View {
                     AsyncImage(url: URL(string: profileImage)) { image in
                         image
                             .resizable()
+                            .centerCropped()
                             .frame(width:100, height: 100, alignment: .center)
                             .clipShape(Circle())
                     } placeholder: {
-                        ProgressView()
+                        Image.imgDefault
+                            .resizable()
+                            .centerCropped()
+                            .frame(width:100, height: 100, alignment: .center)
+                            .clipShape(Circle())
                     }
                     .clipShape(Circle())
                 } else {
@@ -45,13 +50,12 @@ struct CardDetailView: View {
                     self.showImagePicker = true
                 }) {
                     Text("Upload Photo")
-                        .frame(width: 50, height: 30)
+                        .frame(width: 150, height: 30)
                         .font(.system(size: 16))
                         .foregroundColor(.white)
                         .overlay(
                             RoundedRectangle(cornerRadius: 25)
-                                .stroke(Color.white, lineWidth: 2)
-                        )
+                                .stroke(Color.white, lineWidth: 2))
                 }
                 .background(Color.blue)
                 .cornerRadius(25)
@@ -70,6 +74,12 @@ struct CardDetailView: View {
         .padding(.horizontal, 16)
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(image: $profileImage)
+        }
+        .alert(isPresented: $cardVM.showAlert) {
+            Alert(
+                title: Text(cardVM.alertTitle),
+                message: Text(cardVM.alertMessage),
+                dismissButton: .default(Text("OK")))
         }
         .onChange(of: profileImage) { uploadImage in
             if let image = uploadImage {

@@ -25,7 +25,7 @@ PRODUCT_NAME = Ebuddy App $(ENV_NAME)
 // bundle id
 PRODUCT_BUNDLE_IDENTIFIER = ai.qalbu.EBuddy-App-Dev.$(ENV_NAME)
 // app icon
-ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_Dev
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
 // app version
 MARKETING_VERSION = 1.0.0
 // build number

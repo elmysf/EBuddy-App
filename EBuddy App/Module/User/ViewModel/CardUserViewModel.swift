@@ -93,4 +93,12 @@ class CardUserViewModel: ObservableObject {
             return "Price"
         }
     }
+    
+    var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+    }
+
+    var copyrightInfo: String {
+        Bundle.main.infoDictionary?["NSHumanReadableCopyright"] as? String ?? ""
+    }
 }

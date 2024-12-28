@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		368149EE2D1FEDF800E67728 /* EBuddy-Screenshoot.png in Resources */ = {isa = PBXBuildFile; fileRef = 368149ED2D1FEDF800E67728 /* EBuddy-Screenshoot.png */; };
 		368149F02D1FEE2800E67728 /* Ebuddy-recording.GIF in Resources */ = {isa = PBXBuildFile; fileRef = 368149EF2D1FEE2800E67728 /* Ebuddy-recording.GIF */; };
+		368CD6EB2D2013D500F90E9A /* EBuddy-Screenshoot.png in Resources */ = {isa = PBXBuildFile; fileRef = 368CD6EA2D2013D500F90E9A /* EBuddy-Screenshoot.png */; };
 		36FD6C932D1DA19F000D34A7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 36FD6C922D1DA19F000D34A7 /* FirebaseAuth */; };
 		36FD6C952D1DA19F000D34A7 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 36FD6C942D1DA19F000D34A7 /* FirebaseCore */; };
 		36FD6C972D1DA19F000D34A7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 36FD6C962D1DA19F000D34A7 /* FirebaseFirestore */; };
@@ -33,8 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		368149ED2D1FEDF800E67728 /* EBuddy-Screenshoot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EBuddy-Screenshoot.png"; sourceTree = "<group>"; };
 		368149EF2D1FEE2800E67728 /* Ebuddy-recording.GIF */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Ebuddy-recording.GIF"; sourceTree = "<group>"; };
+		368CD6EA2D2013D500F90E9A /* EBuddy-Screenshoot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EBuddy-Screenshoot.png"; sourceTree = "<group>"; };
 		36FD6C642D1D9C12000D34A7 /* EBuddy App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EBuddy App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FD6C742D1D9C13000D34A7 /* EBuddy AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EBuddy AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FD6C7E2D1D9C13000D34A7 /* EBuddy AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EBuddy AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,8 +90,8 @@
 		36FD6C5B2D1D9C12000D34A7 = {
 			isa = PBXGroup;
 			children = (
+				368CD6EA2D2013D500F90E9A /* EBuddy-Screenshoot.png */,
 				368149EF2D1FEE2800E67728 /* Ebuddy-recording.GIF */,
-				368149ED2D1FEDF800E67728 /* EBuddy-Screenshoot.png */,
 				36FD6C662D1D9C12000D34A7 /* EBuddy App */,
 				36FD6C772D1D9C13000D34A7 /* EBuddy AppTests */,
 				36FD6C812D1D9C13000D34A7 /* EBuddy AppUITests */,
@@ -237,7 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				368149EE2D1FEDF800E67728 /* EBuddy-Screenshoot.png in Resources */,
+				368CD6EB2D2013D500F90E9A /* EBuddy-Screenshoot.png in Resources */,
 				368149F02D1FEE2800E67728 /* Ebuddy-recording.GIF in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +427,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EBuddy App/Preview Content\"";
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EBuddy-App-Info.plist";
@@ -462,6 +463,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EBuddy App/Preview Content\"";
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EBuddy-App-Info.plist";
@@ -495,6 +497,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
@@ -513,6 +516,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
@@ -530,6 +534,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-AppUITests";
@@ -546,6 +551,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-AppUITests";
@@ -630,6 +636,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EBuddy App/Preview Content\"";
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EBuddy-App-Info.plist";
@@ -663,6 +670,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
@@ -680,6 +688,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-AppUITests";
@@ -757,6 +766,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EBuddy App/Preview Content\"";
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EBuddy-App-Info.plist";
@@ -790,6 +800,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
@@ -807,6 +818,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3893V8BUPK;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-AppUITests";

@@ -4,7 +4,7 @@
 
 This project is developed using SwiftUI, leveraging the MVVM (Model-View-ViewModel) architecture along with Combine for reactive programming.
 
-<img src="https://github.com/elmysf/EBuddy-App/blob/main/Ebuddy-recording.GIF" width="300" />
+<img src="https://github.com/elmysf/EBuddy-App/blob/main/Ebuddy-recording.gif" width="300" />
 
 ## Table of Contents
 - [Installation](#installation)

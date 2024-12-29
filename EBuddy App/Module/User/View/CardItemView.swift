@@ -49,6 +49,7 @@ extension CardItemView {
             HStack(spacing: 8){
                 Text(self.item.name ?? "")
                     .font(.system(size: 16, weight: .bold))
+                    .lineLimit(0)
                     .foregroundColor(Color.mainFontColor)
                 Circle()
                     .fill(self.item.isOnline ?? false ? Color.green : Color.clear)
@@ -68,6 +69,11 @@ extension CardItemView {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 18, height: 18)
+                    .onTapGesture {
+                        if let instagramURL = URL(string: haveInstagram) {
+                            UIApplication.shared.open(instagramURL)
+                        }
+                    }
             }
         }
     }
@@ -109,6 +115,7 @@ extension CardItemView {
                         .centerCropped()
                         .frame(height:  UIScreen.main.bounds.size.width/2, alignment: .center)
                         .cornerRadius(16)
+                    ProgressView()
                 }
             }
         } else {

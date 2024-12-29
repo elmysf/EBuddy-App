@@ -24,7 +24,7 @@ struct ProgressBar: View {
                   
                 ZStack(alignment: .trailing) {
                     RoundedRectangle(cornerRadius: 45)
-                        .fill(Color.green)
+                        .fill(Color.blue)
                         .frame(width: min(CGFloat(self.value) * geometry.size.width, geometry.size.width), height: geometry.size.height)
                 }
             }

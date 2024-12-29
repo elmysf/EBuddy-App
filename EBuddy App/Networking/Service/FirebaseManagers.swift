@@ -13,6 +13,7 @@ import FirebaseStorage
 
 final class FirebaseManagers {
     private static let db = Firestore.firestore().collection("USERS")
+    private static let sliders = Firestore.firestore().collection("SLIDERS")
     private let storage = Storage.storage()
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     private var cancellables = Set<AnyCancellable>()
@@ -55,7 +56,31 @@ final class FirebaseManagers {
         .eraseToAnyPublisher()
     }
     
-    func uploadImageUser(uid: String, image: UIImage) -> AnyPublisher<URL, Error> {
+    func fetchSliders(with query: Query = FirebaseManagers.sliders) -> AnyPublisher<[SliderModel], Error> {
+        Future<[SliderModel], Error> { promise in
+            query.getDocuments { snapshot, error in
+                if let error = error {
+                    promise(.failure(error))
+                    return
+                }
+                
+                guard let documents = snapshot?.documents else {
+                    promise(.success([]))
+                    return
+                }
+                
+                do {
+                    let sliders = try documents.map { try $0.data(as: SliderModel.self) }
+                    promise(.success(sliders))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func uploadImageUser(uid: String, image: UIImage, progressHandler: @escaping (Double) -> Void) -> AnyPublisher<URL, Error> {
         var imageData: Data?
         var fileExtension: String
         beginBackgroundTask()
@@ -82,10 +107,10 @@ final class FirebaseManagers {
             )).eraseToAnyPublisher()
         }
         
-        let refStorage = storage.reference().child("profile_user/\(uid).\(fileExtension)")
+        let refStorage = storage.reference().child("EBuddy-User/\(uid).\(fileExtension)")
         
         return Future<URL, Error> { [weak self] promise in
-            refStorage.putData(validImageData, metadata: nil) { metadata, error in
+            let uploadTask = refStorage.putData(validImageData, metadata: nil) { metadata, error in
                 if let error = error {
                     self?.endBackgroundTask()
                     promise(.failure(error))
@@ -100,6 +125,11 @@ final class FirebaseManagers {
                         promise(.success(url))
                     }
                 }
+            }
+            
+            uploadTask.observe(.progress) { snapshot in
+                let progress = Double(snapshot.progress?.fractionCompleted ?? 0.0)
+                progressHandler(progress)
             }
         }.eraseToAnyPublisher()
     }

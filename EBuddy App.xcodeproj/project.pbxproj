@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		368149F02D1FEE2800E67728 /* Ebuddy-recording.GIF in Resources */ = {isa = PBXBuildFile; fileRef = 368149EF2D1FEE2800E67728 /* Ebuddy-recording.GIF */; };
+		3674CA662D219CC700BAA7BA /* Ebuddy-recording.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3674CA652D219CC700BAA7BA /* Ebuddy-recording.gif */; };
 		368CD6EB2D2013D500F90E9A /* EBuddy-Screenshoot.png in Resources */ = {isa = PBXBuildFile; fileRef = 368CD6EA2D2013D500F90E9A /* EBuddy-Screenshoot.png */; };
 		36FD6C932D1DA19F000D34A7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 36FD6C922D1DA19F000D34A7 /* FirebaseAuth */; };
 		36FD6C952D1DA19F000D34A7 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 36FD6C942D1DA19F000D34A7 /* FirebaseCore */; };
@@ -33,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		368149EF2D1FEE2800E67728 /* Ebuddy-recording.GIF */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Ebuddy-recording.GIF"; sourceTree = "<group>"; };
+		3674CA652D219CC700BAA7BA /* Ebuddy-recording.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Ebuddy-recording.gif"; sourceTree = "<group>"; };
 		368CD6EA2D2013D500F90E9A /* EBuddy-Screenshoot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EBuddy-Screenshoot.png"; sourceTree = "<group>"; };
 		36FD6C642D1D9C12000D34A7 /* EBuddy App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EBuddy App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FD6C742D1D9C13000D34A7 /* EBuddy AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EBuddy AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,8 +90,8 @@
 		36FD6C5B2D1D9C12000D34A7 = {
 			isa = PBXGroup;
 			children = (
+				3674CA652D219CC700BAA7BA /* Ebuddy-recording.gif */,
 				368CD6EA2D2013D500F90E9A /* EBuddy-Screenshoot.png */,
-				368149EF2D1FEE2800E67728 /* Ebuddy-recording.GIF */,
 				36FD6C662D1D9C12000D34A7 /* EBuddy App */,
 				36FD6C772D1D9C13000D34A7 /* EBuddy AppTests */,
 				36FD6C812D1D9C13000D34A7 /* EBuddy AppUITests */,
@@ -238,7 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				368CD6EB2D2013D500F90E9A /* EBuddy-Screenshoot.png in Resources */,
-				368149F02D1FEE2800E67728 /* Ebuddy-recording.GIF in Resources */,
+				3674CA662D219CC700BAA7BA /* Ebuddy-recording.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +446,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D DEV";
-				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-App-Dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEV DEBUG";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -482,7 +482,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D DEV";
-				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-App-Dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEV;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -655,7 +655,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D STAG";
-				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-App-Stag";
+				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-App-Staging";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "STAG DEBUG";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -785,7 +785,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D STAG";
-				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-App-Stag";
+				PRODUCT_BUNDLE_IDENTIFIER = "ai.qalbu.EBuddy-App-Staging";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = STAG;
 				SWIFT_EMIT_LOC_STRINGS = YES;

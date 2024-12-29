@@ -50,8 +50,7 @@ struct CardView: View {
             .padding(.horizontal, 16)
             
             ScrollView(.vertical) {
-                
-                CarouselView()
+                CarouselView(carouselVM: self.carouselVM)
                     .frame(height: 190)
                     .environmentObject(carouselVM.stateModel)
                 
@@ -82,6 +81,13 @@ struct CardView: View {
                 }
                 .padding(.horizontal, 8)
                 .padding(.top, 16)
+            }
+            .onAppear {
+                self.carouselVM.fetchSlider()
+            }
+            .refreshable {
+                cardVM.fetchUsers()
+                carouselVM.fetchSlider()
             }
         }
         .padding(.top, 16)

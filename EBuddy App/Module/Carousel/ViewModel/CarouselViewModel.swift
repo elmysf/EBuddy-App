@@ -12,13 +12,17 @@ import SwiftUI
 import Foundation
 
 final class CarouselViewModel: ObservableObject {
-    
+    @Published var slidersData: [SliderModel] = []
     @Published private(set) var stateModel: UIStateModel = UIStateModel()
     @Published private(set) var activeCard: Int = 0
     @Published var progress: Float = 0
-    private var cancellables: [AnyCancellable] = []
+    @Published var errorMessage: String? = nil
+    private let firebaseManager: FirebaseManagers
+    private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    init(firebaseManager: FirebaseManagers = FirebaseManagers()) {
+        self.firebaseManager = firebaseManager
+        
         self.stateModel.$activeCard.sink { completion in
             switch completion {
             case let .failure(error):
@@ -40,5 +44,22 @@ final class CarouselViewModel: ObservableObject {
         withAnimation(Animation.linear(duration: 5.0)) {
             progress = 1.0
         }
+    }
+    
+    func fetchSlider() {
+        firebaseManager.fetchSliders()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.errorMessage = error.localizedDescription
+                }
+            }, receiveValue: { [weak self] sliders in
+                self?.slidersData = sliders
+            
+            })
+            .store(in: &cancellables)
     }
 }

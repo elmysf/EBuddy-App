@@ -24,6 +24,7 @@ struct UserJsonModel: Codable, Identifiable {
     let phoneNumber: String
     let gender: Int
     let profile: String?
+    let country: String?
     var gemes: [String]?
     var genderEnum: GenderEnum? {
         guard let infoGender = GenderEnum(rawValue: gender) else {
@@ -48,6 +49,7 @@ struct UserJsonModel: Codable, Identifiable {
         case isVoiceAvailable = "is_voice_available"
         case isHaveInstagram = "is_have_instagram"
         case gemes
+        case country
     }
 
     var genderInformation: String {

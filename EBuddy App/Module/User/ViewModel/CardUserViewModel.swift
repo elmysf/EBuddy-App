@@ -21,6 +21,7 @@ class CardUserViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
+    @Published var loadingProgress: Double = 0.0
     
     private let firebaseManager: FirebaseManagers
     private var cancellables = Set<AnyCancellable>()
@@ -46,19 +47,21 @@ class CardUserViewModel: ObservableObject {
     }
     
     func uploadImage(uid: String, image: UIImage) {
-        firebaseManager.uploadImageUser(uid: uid, image: image)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self?.showUploadErrorAlert(message: error.localizedDescription)
-                }
-            }, receiveValue: { [weak self] url in
-                self?.updateImageURL(userID: uid, imageURL: url.absoluteString)
-            })
-            .store(in: &cancellables)
+        firebaseManager.uploadImageUser(uid: uid, image: image, progressHandler: { [weak self] progress in
+            self?.loadingProgress = progress
+        })
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { [weak self] completion in
+            switch completion {
+            case .finished:
+                self?.fetchUsers()
+            case .failure(let error):
+                self?.showUploadErrorAlert(message: error.localizedDescription)
+            }
+        }, receiveValue: { [weak self] url in
+            self?.updateImageURL(userID: uid, imageURL: url.absoluteString)
+        })
+        .store(in: &cancellables)
     }
     
     func updateImageURL(userID: String, imageURL: String) {
@@ -67,7 +70,7 @@ class CardUserViewModel: ObservableObject {
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished:
-                    break
+                    self?.showSuccessAlert(message: "Successfully to set new photo.")
                 case .failure(let error):
                     self?.showUploadErrorAlert(message: error.localizedDescription)
                 }
@@ -75,6 +78,12 @@ class CardUserViewModel: ObservableObject {
                 self?.fetchUsers()
             })
             .store(in: &cancellables)
+    }
+    
+    private func showSuccessAlert(message: String) {
+        self.alertTitle = "Success"
+        self.alertMessage = message
+        self.showAlert = true
     }
     
     private func showUploadErrorAlert(message: String) {
